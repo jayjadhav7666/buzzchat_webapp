@@ -75,7 +75,7 @@ class WebHomePage extends StatelessWidget {
                     icon: Icons.call,
                     title: "Chat With Friends",
                     description:
-                        "BuzzChat App is A best for comunicating with friend anf family",
+                        "BuzzChat App is A best for comunicating with friend and family",
                   ),
                 ],
               ),
