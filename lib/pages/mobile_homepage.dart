@@ -1,7 +1,11 @@
+import 'package:buzzchat_webapp/controller/appcontroller.dart';
 import 'package:buzzchat_webapp/widgets/Divider.dart';
 import 'package:buzzchat_webapp/widgets/featuresWidget.dart';
+import 'package:buzzchat_webapp/widgets/contactus.dart';
+import 'package:buzzchat_webapp/widgets/followus.dart';
 import 'package:buzzchat_webapp/widgets/screenshots_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MobileHomepage extends StatelessWidget {
   const MobileHomepage({super.key});
@@ -9,6 +13,7 @@ class MobileHomepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
+    AppController appController = Get.put(AppController());
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -20,7 +25,9 @@ class MobileHomepage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                appController.downloadApk();
+              },
               icon: Icon(Icons.download, color: Colors.white),
               label: Text(
                 'Download',
@@ -95,28 +102,33 @@ class MobileHomepage extends StatelessWidget {
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30,
-                          vertical: 20,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.android, size: 30),
-                            const SizedBox(width: 10),
-                            Text(
-                              'Download App',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                      GestureDetector(
+                        onTap: () {
+                          appController.downloadApk();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 20,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.android, size: 30),
+                              const SizedBox(width: 10),
+                              Text(
+                                'Download App',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -190,9 +202,17 @@ class MobileHomepage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Made with ❤️ By Jayprakash Jadhav",
-                    style: TextStyle(fontSize: 10, color: Colors.grey),
+                  Column(
+                    children: [
+                      Text(
+                        "Made with ❤️ By Jayprakash Jadhav",
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      const SizedBox(height: 40),
+                      ContactUs(),
+                      const SizedBox(height: 40),
+                      Followus(),
+                    ],
                   ),
                 ],
               ),

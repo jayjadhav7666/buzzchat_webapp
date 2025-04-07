@@ -1,4 +1,6 @@
+import 'package:buzzchat_webapp/controller/appcontroller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainInfo extends StatelessWidget {
   const MainInfo({super.key});
@@ -6,6 +8,7 @@ class MainInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
+    AppController appController = Get.put(AppController());
     return Row(
       children: [
         Expanded(
@@ -67,28 +70,33 @@ class MainInfo extends StatelessWidget {
               SizedBox(height: 20),
               Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.android, size: 30),
-                        const SizedBox(width: 10),
-                        Text(
-                          'Download App',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                  GestureDetector(
+                    onTap: () {
+                      appController.downloadApk();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 20,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.android, size: 30),
+                          const SizedBox(width: 10),
+                          Text(
+                            'Download App',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],

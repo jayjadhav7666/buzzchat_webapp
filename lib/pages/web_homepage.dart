@@ -1,14 +1,19 @@
+import 'package:buzzchat_webapp/controller/appcontroller.dart';
 import 'package:buzzchat_webapp/widgets/Divider.dart';
+import 'package:buzzchat_webapp/widgets/contactus.dart';
 import 'package:buzzchat_webapp/widgets/featuresWidget.dart';
+import 'package:buzzchat_webapp/widgets/followus.dart';
 import 'package:buzzchat_webapp/widgets/mainInfo.dart';
 import 'package:buzzchat_webapp/widgets/screenshots_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WebHomePage extends StatelessWidget {
   const WebHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+     AppController appController = Get.put(AppController());
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -20,7 +25,9 @@ class WebHomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                appController.downloadApk();
+              },
               icon: Icon(Icons.download, color: Colors.white),
               label: Text(
                 'Download',
@@ -97,9 +104,23 @@ class WebHomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Made with ❤️ By Jayprakash Jadhav",
-                    style: TextStyle(fontSize: 10, color: Colors.grey),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Made with ❤️ By Jayprakash Jadhav",
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      const SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ContactUs(),
+                          const SizedBox(width: 90),
+                          Followus(),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
